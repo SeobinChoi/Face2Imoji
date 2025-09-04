@@ -1,0 +1,97 @@
+video:
+  device_index: 0
+  width: 1280
+  height: 720
+  target_fps: 30
+  mirror: true
+  min_fps: 15
+  downscale_steps: [0.75, 0.5625]
+
+pose:
+  num_poses: 6
+  min_detection_conf: 0.5
+  min_tracking_conf: 0.5
+  model_path: "models/pose_landmarker_lite.task"
+
+face:
+  min_conf: 0.6
+  nms_iou: 0.4
+  max_faces: 10
+  crop_size: 96
+  grayscale: true
+  normalize: "zero_to_one"
+  model_path: "models/blaze_face_short_range.tflite"
+
+emotion:
+  backend: "FER"
+  labels: ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
+  every_n_frames: 3
+  batch_size: 8
+  model_path: "models/emotion_fer.h5"
+
+smooth:
+  ema_alpha: 0.4
+  switch_delta: 0.15
+  min_hold_frames: 5
+
+track:
+  type: "SORT"
+  iou_thresh: 0.3
+  max_age: 10
+  min_hits: 3
+
+viz:
+  balloon:
+    diameter_px: 64
+    alpha: 0.7
+    offset_y_px: -60
+    font_scale: 0.6
+    prob_digits: 2
+  skeleton:
+    line_thickness: 2
+    point_radius: 3
+  hud:
+    pos: "bottom_left"
+    alpha: 0.6
+    font_scale: 0.7
+  logo:
+    path: "assets/logo.png"
+    alpha: 0.5
+    pos: "top_right"
+
+runtime:
+  device: "cpu"
+  max_people_render: 6
+  log_level: "INFO"
+  
+emoji_mapping:
+  happy: "😄"
+  neutral: "😐"
+  surprise: "😲"
+  sad: "😢"
+  angry: "😡"
+  fear: "😨"
+  disgust: "🤢"
+  
+skeleton_connections:
+  - [0, 1]    # NOSE to LEFT_EYE_INNER
+  - [0, 2]    # NOSE to RIGHT_EYE_INNER
+  - [1, 3]    # LEFT_EYE_INNER to LEFT_EYE
+  - [2, 4]    # RIGHT_EYE_INNER to RIGHT_EYE
+  - [3, 5]    # LEFT_EYE to LEFT_EYE_OUTER
+  - [4, 6]    # RIGHT_EYE to RIGHT_EYE_OUTER
+  - [5, 7]    # LEFT_EYE_OUTER to LEFT_EAR
+  - [6, 8]    # RIGHT_EYE_OUTER to RIGHT_EAR
+  - [9, 10]   # MOUTH_LEFT to MOUTH_RIGHT
+  - [11, 12]  # LEFT_SHOULDER to RIGHT_SHOULDER
+  - [11, 13]  # LEFT_SHOULDER to LEFT_ELBOW
+  - [12, 14]  # RIGHT_SHOULDER to RIGHT_ELBOW
+  - [13, 15]  # LEFT_ELBOW to LEFT_WRIST
+  - [14, 16]  # RIGHT_ELBOW to RIGHT_WRIST
+  - [11, 23]  # LEFT_SHOULDER to LEFT_HIP
+  - [12, 24]  # RIGHT_SHOULDER to RIGHT_HIP
+  - [23, 24]  # LEFT_HIP to RIGHT_HIP
+  - [23, 25]  # LEFT_HIP to LEFT_KNEE
+  - [24, 26]  # RIGHT_HIP to RIGHT_KNEE
+  - [25, 27]  # LEFT_KNEE to LEFT_ANKLE
+  - [26, 28]  # RIGHT_KNEE to RIGHT_ANKLE

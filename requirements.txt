@@ -1,0 +1,21 @@
+# Core dependencies
+opencv-python>=4.8.0
+numpy>=1.21.0
+PyYAML>=6.0
+
+# Computer vision and ML
+mediapipe>=0.10.0
+
+# Emotion recognition (choose one)
+fer>=22.5.1  # FER library option
+# onnxruntime>=1.15.0  # ONNX option (uncomment if using ONNX backend)
+
+# Optional dependencies
+psutil>=5.9.0  # For memory monitoring
+matplotlib>=3.5.0  # For debugging/visualization
+Pillow>=8.3.0  # Image processing support
+
+# Development/testing
+pytest>=7.0.0
+black>=22.0.0
+flake8>=4.0.0
