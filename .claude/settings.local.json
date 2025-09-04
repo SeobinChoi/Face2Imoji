@@ -5,7 +5,11 @@
       "Bash(python:*)",
       "Bash(git add:*)",
       "Bash(gh repo create:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(where gh)"
     ],
     "deny": [],
     "ask": []
